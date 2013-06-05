@@ -76,12 +76,17 @@ function get_external_file($url)
             preg_match('#charset="?(.*)"#si', $meta[0], $enc);
 
             // if charset is found set it otherwise, set it to utf-8
-            $html_charset = (!empty($enc[1])) ? strtolower($enc[1]) : 'utf-8';
+            $html_charset = (isset($enc[1])) ? strtolower($enc[1]) : 'utf-8';
 
         } else {
             $html_charset = 'utf-8';
             $enc[1] = '';
         }
+
+        //bad fix
+        if(!isset($enc[1])) $enc[1] = 'utf-8';
+
+
 
         // replace charset of url to charset of page
         $data = str_replace('charset='.$enc[1], 'charset='.$html_charset, $data);

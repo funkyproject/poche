@@ -8,13 +8,13 @@
  * @license    http://www.wtfpl.net/ see COPYING file
  */
 
-class Sqlite extends Store {
+class Sqlite implements Store {
 
     public static $db_path = 'sqlite:./db/poche.sqlite';
     var $handle;
 
     function __construct() {
-        parent::__construct();
+        
 
         $this->handle = new PDO(self::$db_path);
         $this->handle->exec('CREATE TABLE IF NOT EXISTS "entries" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , "title" VARCHAR, "url" VARCHAR UNIQUE , "is_read" INTEGER DEFAULT 0, "is_fav" INTEGER DEFAULT 0, "content" BLOB)');
@@ -46,8 +46,7 @@ class Sqlite extends Store {
         return $entries;
     }
 
-    public function retrieveOneById($id) {
-        parent::__construct();
+    public function retrieveOneById($id) {        
 
         $entry  = NULL;
         $sql    = "SELECT * FROM entries WHERE id=?";
@@ -58,8 +57,13 @@ class Sqlite extends Store {
         return $entry[0];
     }
 
+    public function retrieveOneByURL($url)
+    {
+
+    }
+
     public function getEntriesByView($view) {
-        parent::__construct();
+        
 
         switch ($_SESSION['sort'])
         {
@@ -103,40 +107,40 @@ class Sqlite extends Store {
     }
 
     public function add($url, $title, $content) {
-        parent::__construct();
+        
         $sql_action     = 'INSERT INTO entries ( url, title, content ) VALUES (?, ?, ?)';
         $params_action  = array($url, $title, $content);
         $query          = $this->executeQuery($sql_action, $params_action);
     }
 
     public function deleteById($id) {
-        parent::__construct();
+        
         $sql_action     = "DELETE FROM entries WHERE id=?";
         $params_action  = array($id);
         $query          = $this->executeQuery($sql_action, $params_action);
     }
 
     public function favoriteById($id) {
-        parent::__construct();
+        
         $sql_action     = "UPDATE entries SET is_fav=~is_fav WHERE id=?";
         $params_action  = array($id);
         $query          = $this->executeQuery($sql_action, $params_action);
     }
 
     public function archiveById($id) {
-        parent::__construct();
+        
         $sql_action     = "UPDATE entries SET is_read=~is_read WHERE id=?";
         $params_action  = array($id);
         $query          = $this->executeQuery($sql_action, $params_action);
     }
 
     public function getLastId() {
-        parent::__construct();
+        
         return $this->getHandle()->lastInsertId();
     }
 
     public function updateContentById($id) {
-        parent::__construct();
+        
         $sql_update     = "UPDATE entries SET content=? WHERE id=?";
         $params_update  = array($content, $id);
         $query          = $this->executeQuery($sql_update, $params_update);

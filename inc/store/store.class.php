@@ -8,48 +8,25 @@
  * @license    http://www.wtfpl.net/ see COPYING file
  */
 
-class Store {
-    function __construct() {
+interface Store {
+    
+    public function add($url, $title, $content);
 
-    }
+    public function retrieveAll() ;
 
-    public function add() {
+    public function retrieveOneById($id) ;
 
-    }
+    public function retrieveOneByURL($url);
 
-    public function retrieveAll() {
-        
-    }
+    public function deleteById($id);
 
-    public function retrieveOneById($id) {
+    public function favoriteById($id);
 
-    }
+    public function archiveById($id);
 
-    public function retrieveOneByURL($url) {
+    public function getEntriesByView($view);
 
-    }
+    public function getLastId();
 
-    public function deleteById($id) {
-
-    }
-
-    public function favoriteById($id) {
-
-    }
-
-    public function archiveById($id) {
-
-    }
-
-    public function getEntriesByView($view) {
-
-    }
-
-    public function getLastId() {
-
-    }
-
-    public function updateContentById($id) {
-
-    }
+    public function updateContentById($id);
 }

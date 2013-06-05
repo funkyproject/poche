@@ -8,44 +8,28 @@
  * @license    http://www.wtfpl.net/ see COPYING file
  */
 
-class File extends Store {
+class File implements Store {
     function __construct() {
 
     }
 
-    public function add() {
+    public function add($url, $title, $content) {}
 
-    }
+    public function retrieveAll() {}
 
-    public function retrieveOneById($id) {
+    public function retrieveOneById($id)  {}
 
-    }
+    public function retrieveOneByURL($url) {}
 
-    public function retrieveOneByURL($url) {
+    public function deleteById($id) {}
 
-    }
+    public function favoriteById($id) {}
 
-    public function deleteById($id) {
+    public function archiveById($id) {}
 
-    }
+    public function getEntriesByView($view) {}
 
-    public function favoriteById($id) {
+    public function getLastId() {}
 
-    }
-
-    public function archiveById($id) {
-
-    }
-
-    public function getEntriesByView($view) {
-
-    }
-
-    public function getLastId() {
-
-    }
-
-    public function updateContentById($id) {
-
-    }
+    public function updateContentById($id) {}
 }

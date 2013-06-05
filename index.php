@@ -11,7 +11,7 @@
 include dirname(__FILE__).'/inc/config.php';
 
 myTool::initPhp();
-
+#test
 # XSRF protection with token
 if (!empty($_POST)) {
     if (!Session::isToken($_POST['token'])) {

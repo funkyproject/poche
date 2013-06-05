@@ -7,7 +7,7 @@
  * @copyright  2013
  * @license    http://www.wtfpl.net/ see COPYING file
  */
-
+ 
 include dirname(__FILE__).'/inc/config.php';
 
 myTool::initPhp();

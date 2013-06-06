@@ -5,7 +5,9 @@ use Behat\Behat\Context\ClosuredContextInterface,
     Behat\Behat\Context\BehatContext,
     Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
+    Behat\Gherkin\Node\TableNode,
+    Behat\Behat\Context\Step as Step;
+    
 
 //
 // Require 3rd-party libraries here:
@@ -32,15 +34,18 @@ class FeatureContext extends BehatContext
         // Initialize your context here
     }
 
-//
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
+    /**
+     * @Given /^I am authenticated$/
+     */
+    public function iAmAuthenticated()
+    {
+        return array(
+            new Step\Given("I am on \"/?logout\""),
+            new Step\When("I fill in \"login\" with \"poche\""),
+            new Step\When("I fill in \"password\" with \"poche\""),
+            new Step\When("I press \"Sign in\""),
+            new Step\Then("I should see \"welcome in your pocket\""),
+        );
+    }
+
 }

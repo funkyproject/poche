@@ -23,3 +23,9 @@ Feature: home page
     And the "div.entrie:first-child" element should contain "toggle favorite"
     And the "div.entrie:first-child" element should contain "toggle delete"
 
+  @javascript
+  Scenario: Sort by date asc
+  	Given I am authenticated
+    When I am on "/"
+    And I press "by date asc"
+    Then the "div.entrie:first-child" element should contain "PHP Simple HTML DOM Parser"
